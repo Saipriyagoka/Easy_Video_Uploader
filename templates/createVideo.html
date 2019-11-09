@@ -1,0 +1,38 @@
+{% extends 'videoList.html' %}
+
+{% block body-block %}
+<div class="w3-container w3-cell">
+    <video width='650' height="350" controls>
+      <source src='{{ file_url }}' type='video/mp4'>
+        Your browser does not support the video tag.
+  </video>
+
+   <p>About this video</p>
+   <div class='res'>
+       <table border='0px' width='400px'>
+         <tr>
+           <td class="m1">Id:<td>
+           <td>{{details.VideoId}}</td>
+         </tr>
+         <tr >
+           <td class="m2">Creation Date:<td>
+           <td>{{details.Created_on}}</td>
+         </tr>
+         <tr>
+           <td class="m3">Duration:<td>
+           <td>{{details.Duration}}</td>
+         </tr>
+       </table>
+       <br><br>
+   </div>
+</div>
+
+<div class="w3-container  w3-cell">
+  <form method="post" action = "{% url 'table' %}">
+    <h2>Metadata </h2>
+    {% csrf_token %}
+    {{ v_form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}

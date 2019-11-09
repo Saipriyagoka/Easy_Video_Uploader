@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="{% static 'css/MyStyle3.css' %}">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title></title>
+  </head>
+  <body>
+
+    <div class="w3-bar w3-border w3-teal w3-large " >
+    <div class="w3-bar-item w3-xlarge"><i class="fa fa-bars"></i></div>
+
+    <div class="w3-bar-item w3-xlarge " style="margin-left:920px">
+      <i class="material-icons">person</i>
+      <i class='profile'>{% if user.is_authenticated %}
+       {{user.username }}
+    {% endif %}</i></div>
+
+    <div class="w3-dropdown-click w3-right">
+      <button class="w3-button w3-xlarge" onclick="myUserFunction()">
+         <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
+          <a href="{% url 'logout' %}" class="w3-bar-item w3-button">Logout</a>
+      </div>
+    </div>
+</div>
+    <script>
+    function myUserFunction() {
+      var x = document.getElementById("demo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+    </script>
+
+{% block body-block%}
+  <div class="w3-bar w3-light-grey ">
+    <div style="margin-right:100px">
+      <h2 class="w3-bar-item ">Content Manager</h2>
+    </div>
+
+    <div style="margin-left:100px">
+      <input type="text" class="w3-bar-item w3-input w3-white  w3-xlarge" placeholder="Search.." id="myInput" onkeyup="mysearchFunction()">
+      <button class="w3-bar-item w3-button w3-green  w3-xlarge"><i class="fa fa-search"></i> </button>
+    </div>
+
+      <form action="{% url 'table' %}" method="post" style="margin-left:100px">
+        {% csrf_token %}
+        <select class="w3-bar-item w3-dropdown-hover w3-white w3-xlarge " id="mylist" name='tableField'>
+          <option value="" selected disabled hidden>Filter Categories</option>
+          <option value="Created_on">Created_on</option>
+          <option value="Duration">Duration</option>
+        </select>
+        &nbsp;&nbsp;
+        <button class="w3-bar-item w3-button w3-white  w3-xlarge" ><i class="fa fa-filter">Refine</i> </button>
+      </form>
+
+
+      <div class='create'>
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button  w3-green w3-xlarge w3-right">
+        Create Video</button>
+
+        <div id="id01" class="w3-modal" >
+          <div class="w3-modal-content w3-xlarge  ">
+            <div class="w3-container">
+              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <form method="post" enctype="multipart/form-data" class='increase' action="{% url 'showvideo' %}">
+                <center>
+                {% csrf_token %}
+                <br><br>
+                <input type="file" name="video" accept="video/*">
+                <br><br>
+                <button type="submit">Create</button>
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="w3-container">
+        <table class="w3-table w3-border" id="myTable">
+          <tr class='w3-teal'>
+            <th>Thumbnail</th>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Created_On</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+          {% for k in video_obj %}
+          <tr id = 'tableFields'>
+            <td><a href="{% url 'accesemeta' k.VideoId %}" >
+              <video class="tutorial_vid" width='280' height="50">
+                <source src='{{ k.Thumbnail.url }}' type='video/mp4'>
+                  Your browser does not support the video tag.
+            </video>
+            </a></td>
+            <td>{{k.Name}}</td>
+            <td>{{k.VideoId}}</td>
+            <td>{{k.Created_on}}</td>
+            <td>{{k.Duration}}Sec</td>
+            <td>{{k.Status}}</td>
+          </tr>
+      {% endfor %}
+      </table>
+  </div>
+
+
+    <script>
+    function mysearchFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+  {% endblock %}
+  </body>
+</html>
