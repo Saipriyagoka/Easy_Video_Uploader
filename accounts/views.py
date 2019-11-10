@@ -19,9 +19,11 @@ class SignUp(generic.CreateView):
 
 def table(request):
     video_obj = VideoModel.objects.all()
+    return render(request, 'videoList.html', {'video_obj' : video_obj})
+
+def Filtertable(request):
     if request.POST:
         video_pk_list = request.POST.getlist('tableField', None)
-        print(video_pk_list[0])
         video_obj = VideoModel.objects.order_by(video_pk_list[0])
     return render(request, 'videoList.html', {'video_obj' : video_obj})
 
