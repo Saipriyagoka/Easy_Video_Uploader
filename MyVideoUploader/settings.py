@@ -153,4 +153,11 @@ FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHand
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-DATABASES['default'] =  dj_database_url.config(default='mysql://root@localhost:3306/uploader_db')
+# if ON_HEROKU:
+#     DATABASE_URL ='postgres://uooxhwdtyqnqup:112fa65c6dadb2e63196869258851ded9419813ed8a0df0fc7352bae1bbdee20@ec2-174-129-253-180.compute-1.amazonaws.com:5432/d5j1abs9l7pu8t'
+# else:
+#     DATABASE_URL = 'mysql://root@localhost:3306/uploader_db'
+#
+# DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+#
+DATABASES['default'] =  dj_database_url.config(default='postgres://uooxhwdtyqnqup:112fa65c6dadb2e63196869258851ded9419813ed8a0df0fc7352bae1bbdee20@ec2-174-129-253-180.compute-1.amazonaws.com:5432/d5j1abs9l7pu8t')

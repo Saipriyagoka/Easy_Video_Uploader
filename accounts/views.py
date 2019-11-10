@@ -42,7 +42,6 @@ def showvideo(request):
 def AcceseMeta(request,VideoId):
     details = get_object_or_404(VideoModel, VideoId=VideoId)
     file_url=details.Thumbnail.url
-
     v_form = VideoMetaForm(request.POST, request.FILES)
     if v_form.is_valid():
         n_form = v_form.save(commit = False)

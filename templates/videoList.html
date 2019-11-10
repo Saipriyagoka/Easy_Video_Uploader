@@ -98,7 +98,7 @@
             <th>Status</th>
           </tr>
           {% for k in video_obj %}
-          <tr id = 'tableFields'>
+          <tr>
             <td><a href="{% url 'accesemeta' k.VideoId %}" >
               <video class="tutorial_vid" width='280' height="50">
                 <source src='{{ k.Thumbnail.url }}' type='video/mp4'>
