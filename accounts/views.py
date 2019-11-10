@@ -5,6 +5,8 @@ from django.views import generic
 from .models import VideoModel,VideoMeta
 from .forms import VideoMetaForm
 import datetime
+import imageio
+imageio.plugins.ffmpeg.download()
 from moviepy.editor import VideoFileClip
 import uuid
 from django.contrib import messages

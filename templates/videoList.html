@@ -15,13 +15,13 @@
     <div class="w3-bar w3-border w3-teal w3-large " >
     <div class="w3-bar-item w3-xlarge"><i class="fa fa-bars"></i></div>
 
-    <div class="w3-bar-item w3-xlarge " style="margin-left:920px">
+    <div class="w3-bar-item w3-xlarge " style="margin-left:850px">
       <i class="material-icons">person</i>
       <i class='profile'>{% if user.is_authenticated %}
        {{user.username }}
     {% endif %}</i></div>
 
-    <div class="w3-dropdown-click w3-right">
+    <div class="w3-dropdown-click w3-right" style="margin-right:50px">
       <button class="w3-button w3-xlarge" onclick="myUserFunction()">
          <i class="fa fa-caret-down"></i>
       </button>
