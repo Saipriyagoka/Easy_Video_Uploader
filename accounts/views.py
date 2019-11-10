@@ -12,19 +12,10 @@ import uuid
 from django.contrib import messages
 # Create your views here.
 
-def SignUp(request):
-    if request.method == 'POST':
-        f = UserCreationForm(request.POST)
-        if f.is_valid():
-            f.save()
-            messages.success(request, 'Account created successfully')
-            return redirect('login')
-
-    else:
-        f = UserCreationForm()
-
-    return render(request, 'signup.html', {'form': f})
-
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
 
 def table(request):
     video_obj = VideoModel.objects.all()

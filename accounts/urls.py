@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path('signup/', views.SignUp, name='signup'),
+    path('signup/', views.SignUp.as_view(), name='signup'),
     path('accesemeta/<uuid:VideoId>', views.AcceseMeta, name='accesemeta'),
     path('table/', views.table, name='table'),
     path('showvideo/', views.showvideo, name='showvideo'),
