@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -149,3 +149,8 @@ LOGIN_REDIRECT_URL = 'table'
 LOGOUT_REDIRECT_URL = 'base'
 
 FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHandler']
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+DATABASES['default'] =  dj_database_url.config(default='mysql://root@localhost:3306/uploader_db')
