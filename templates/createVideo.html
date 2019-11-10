@@ -1,7 +1,7 @@
 {% extends 'videoList.html' %}
 
 {% block body-block %}
-<div class="w3-container w3-cell">
+<div class="w3-container  w3-mobile w3-cell">
     <video width='650' height="350" controls>
       <source src='{{ file_url }}' type='video/mp4'>
         Your browser does not support the video tag.
@@ -27,7 +27,7 @@
    </div>
 </div>
 
-<div class="w3-container  w3-cell">
+<div class="w3-container w3-mobile w3-cell">
   <form method="post" action = "{% url 'table' %}">
     <h2>Metadata </h2>
     {% csrf_token %}
