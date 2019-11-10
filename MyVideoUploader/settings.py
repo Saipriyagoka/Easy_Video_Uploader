@@ -78,25 +78,25 @@ WSGI_APPLICATION = 'MyVideoUploader.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.mysql',
-'NAME': 'uploader_db',
-'USER': 'root',
-'PASSWORD': "",
-'HOST': "",
-'PORT': "",
-'OPTIONS': {
-'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-}
-}
+# DATABASES = {
+# 'default': {
+#     'ENGINE': 'django.db.backends.mysql',
+#     'NAME': 'uploader_db',
+#     'USER': 'root',
+#     'PASSWORD': "",
+#     'HOST': "",
+#     'PORT': "",
+#     'OPTIONS': {
+#     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+# }
+# }
+# }
 
 
 # Password validation
@@ -153,11 +153,4 @@ FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHand
 # import dj_database_url
 # DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=True)
 #
-# # if ON_HEROKU:
-# #     DATABASE_URL ='postgres://uooxhwdtyqnqup:112fa65c6dadb2e63196869258851ded9419813ed8a0df0fc7352bae1bbdee20@ec2-174-129-253-180.compute-1.amazonaws.com:5432/d5j1abs9l7pu8t'
-# # else:
-# #     DATABASE_URL = 'mysql://root@localhost:3306/uploader_db'
-# #
-# # DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
-# #
-# DATABASES['default'] =  dj_database_url.config(default='postgres://uooxhwdtyqnqup:112fa65c6dadb2e63196869258851ded9419813ed8a0df0fc7352bae1bbdee20@ec2-174-129-253-180.compute-1.amazonaws.com:5432/d5j1abs9l7pu8t')
+# DATABASES['default'] =  dj_database_url.config(default='mysql://b30f85f23c2a32:cddcfafd@us-cdbr-iron-east-05.cleardb.net/heroku_1fc8990caab8b08?reconnect=true')
