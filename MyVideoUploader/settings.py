@@ -47,7 +47,7 @@ DATABASES = {
     # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
     'default': env.db(),
     # read os.environ['SQLITE_URL']
-    'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
+    'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db'),
 }
 
 # CACHES = {
@@ -65,7 +65,7 @@ DATABASES = {
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['my-video-uploader.herokuapp.com' ]
+ALLOWED_HOSTS = ['my-video-uploader.herokuapp.com','localhost' ]
 
 
 # Application definition

@@ -26,7 +26,6 @@
 import os
 import sys
 import re
-from django.core.management import execute_from_command_line
 
 def read_env():
     """Pulled from Honcho code with minor updates, reads local default
