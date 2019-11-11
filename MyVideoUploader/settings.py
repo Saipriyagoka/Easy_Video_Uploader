@@ -23,9 +23,19 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8ru#9fu36z+!l+#mw84emkpna2zms&3t2qerrt()=b(6_a9clt'
-
-# SECURITY WARNING: don't run with debug turned on in production!
+#
+# # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+from decouple import config
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
+
 
 ALLOWED_HOSTS = []
 
@@ -145,14 +155,16 @@ MEDIA_URL = '/media/'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 LOGIN_REDIRECT_URL = 'table'
 LOGOUT_REDIRECT_URL = 'base'
 
 FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHandler']
-
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-DATABASES['default'] =  dj_database_url.config(default='mysql://b30f85f23c2a32:cddcfafd@us-cdbr-iron-east-05.cleardb.net/heroku_1fc8990caab8b08')
-DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
-DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+#
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=True)
+#
+# DATABASES['default'] =  dj_database_url.config(default='mysql://b30f85f23c2a32:cddcfafd@us-cdbr-iron-east-05.cleardb.net/heroku_1fc8990caab8b08')
+# DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+# DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
