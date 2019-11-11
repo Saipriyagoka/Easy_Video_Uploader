@@ -65,7 +65,7 @@ DATABASES = {
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['my-video-uploader.herokuapp.com' ]
 
 
 # Application definition
