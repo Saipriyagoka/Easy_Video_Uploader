@@ -155,3 +155,4 @@ DATABASES['default'] =  dj_database_url.config(conn_max_age=600, ssl_require=Tru
 
 DATABASES['default'] =  dj_database_url.config(default='mysql://b30f85f23c2a32:cddcfafd@us-cdbr-iron-east-05.cleardb.net/heroku_1fc8990caab8b08')
 DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
