@@ -1,1 +1,1 @@
-web: gunicorn MyVideoUploader.wsgi 
+web: gunicorn MyVideoUploader.wsgi
