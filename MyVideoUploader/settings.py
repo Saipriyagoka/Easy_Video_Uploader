@@ -184,7 +184,7 @@ MEDIA_URL = '/media/'
 # Activate Django-Heroku.
 #django_heroku.settings(locals())
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = 'table'
 LOGOUT_REDIRECT_URL = 'base'
